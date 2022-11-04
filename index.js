@@ -30,11 +30,17 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  Counter1 is a function that returns a function that can be re-used. Counter2 is a function that effects the global count variable.
+
   2. Which of the two uses a closure? How can you tell?
-  
+
+  Counter 1 uses a closure because it has a function inside of it containing a variable that is defined in the function.
+  Counter 2 does not because the variable not defined in a function, instead it is defined in the global scope.
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
+      Counter 1 would be preferable if you wanted to create a counter that could be used in multiple instances. Counter 2 would be preferable if you wanted to create a counter that is used in a single instance globally.
 */
 
 // counter1 code
@@ -46,6 +52,9 @@ function counterMaker() {
 }
 
 const counter1 = counterMaker();
+// counter1();
+// counter1();
+// console.log('Task 1: ',counter1());
 
 // counter2 code
 let count = 0;
@@ -54,6 +63,9 @@ function counter2() {
   return count++;
 }
 
+// counter2();
+// counter2();
+// console.log('Task 1: ',count);
 
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
@@ -64,10 +76,12 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  // Return a random whole number of points scored by one team in an inning  (between 0 and 2)
+  return Math.floor(Math.random() * 3);
 }
 
+console.log('Task 2: ',inning(),inning(),inning(),inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,9 +97,20 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, max){
+  let homeScore = 0;
+  let awayScore = 0;
+  for(let i = 0; i < max; i++){
+    homeScore += inning();
+    awayScore += inning();
+  }
+  return {
+    Home: homeScore,
+    Away: awayScore
+  }
 }
+
+console.log('Task 3: ',finalScore(inning, 9));
 
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
