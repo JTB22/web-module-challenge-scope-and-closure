@@ -126,11 +126,14 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
+function getInningScore(inning){
+  return {
+    Home: inning(),
+    Away: inning()
+  }
 }
 
+console.log('Task 4: ',getInningScore(inning));
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -172,9 +175,29 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ] */
 // NOTE: There is no test associated with this code; if your output matches the given example, consider it complete!
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore, inning, max){
+  let homeScore = 0;
+  let awayScore = 0;
+  let scoreBoard = [];
+  for(let i = 0; i < max; i++){
+    let point = getInningScore(inning);
+    homeScore += point.Home;
+    awayScore += point.Away;
+    scoreBoard.push(`Inning ${i+1}: Away ${point.Away} - Home ${point.Home}`);
+  }
+  if(homeScore === awayScore){
+    scoreBoard.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`);
+  } else {
+    scoreBoard.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
+  }
+  return scoreBoard;
 }
+
+console.log('Task 5: ',scoreboard(getInningScore, inning, 9));
+console.log('Task 5: ',scoreboard(getInningScore, inning, 9));
+console.log('Task 5: ',scoreboard(getInningScore, inning, 9));
+console.log('Task 5: ',scoreboard(getInningScore, inning, 9));
+
 
 
 
